@@ -1,7 +1,11 @@
-import React from "react";
+import LoginSignupPage from "./auth/login-signup-page";
 
 const App = () => {
-  return <div>App</div>;
+  return (
+    <>
+      <LoginSignupPage />
+    </>
+  );
 };
 
 export default App;
