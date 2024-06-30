@@ -47,14 +47,15 @@ const Login = () => {
   };
 
   return (
-    <Paper
-      elevation={3}
+    <Box
       sx={{
         p: 4,
-        maxWidth: 400,
         width: "100%",
-        maxHeight: 500,
         height: "100%",
+        zIndex: "999",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
       }}
     >
       <Typography
@@ -111,41 +112,13 @@ const Login = () => {
             color="primary"
             fullWidth
             onClick={handleSubmit}
+            sx={{ paddingY: "8px" }}
           >
             Login
           </Button>
         </Box>
       </form>
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          gap: "24px",
-          marginBottom: "18px",
-        }}
-      >
-        <span
-          style={{
-            display: "block",
-            height: "1px",
-            backgroundColor: "black",
-            width: "100%",
-          }}
-        ></span>
-        <Typography>OR</Typography>
-        <span
-          style={{
-            display: "block",
-            height: "1px",
-            backgroundColor: "black",
-            width: "100%",
-          }}
-        ></span>
-      </div>
-      <Typography>
-        Don't have an account? <a href="#">Signup</a>
-      </Typography>
-    </Paper>
+    </Box>
   );
 };
 

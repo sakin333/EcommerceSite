@@ -1,4 +1,9 @@
-import { Visibility, VisibilityOff } from "@mui/icons-material";
+import {
+  Facebook,
+  Google,
+  Visibility,
+  VisibilityOff,
+} from "@mui/icons-material";
 import {
   Box,
   Button,
@@ -48,15 +53,15 @@ const Signup = () => {
   };
 
   return (
-    <Paper
-      elevation={3}
+    <Box
       sx={{
         p: 4,
-        maxWidth: 400,
         width: "100%",
-        maxHeight: 500,
         height: "100%",
         zIndex: "999",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
       }}
     >
       <Typography
@@ -124,6 +129,7 @@ const Signup = () => {
             variant="contained"
             color="primary"
             fullWidth
+            sx={{ paddingY: "8px" }}
             onClick={handleSubmit}
           >
             Sign Up
@@ -156,10 +162,29 @@ const Signup = () => {
           }}
         ></span>
       </div>
-      <Typography>
-        Already have an account? <a href="#">Login</a>
-      </Typography>
-    </Paper>
+
+      <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+        <Button
+          variant="contained"
+          color="error"
+          startIcon={<Google />}
+          sx={{ color: "#fff", paddingY: "8px" }}
+          onClick={() => console.log("Google sign-in")}
+          fullWidth
+        >
+          Sign in with Google
+        </Button>
+        <Button
+          variant="contained"
+          startIcon={<Facebook />}
+          sx={{ color: "#fff", paddingY: "8px" }}
+          onClick={() => console.log("Facebook sign-in")}
+          fullWidth
+        >
+          Sign in with Facebook
+        </Button>
+      </Box>
+    </Box>
   );
 };
 
