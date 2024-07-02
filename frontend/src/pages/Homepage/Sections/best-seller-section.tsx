@@ -1,4 +1,4 @@
-import { MouseEventHandler, useState } from "react";
+import { MouseEventHandler, ReactElement, useEffect, useState } from "react";
 import BestSellerCard from "../components/best-seller-card";
 
 const BestSellerSection = () => {
@@ -51,9 +51,62 @@ const BestSellerSection = () => {
       title: "Classic Watch",
       price: "$150",
     },
+    {
+      id: 9,
+      image: "https://via.placeholder.com/150",
+      title: "Casual Jeans",
+      price: "$70",
+    },
+  ];
+
+  const sliderDiv: ReactElement[] = [
+    <div
+      className="flex items-center justify-start gap-8 min-w-full
+"
+    >
+      {collectionItems.slice(0, 3).map((item) => (
+        <BestSellerCard
+          key={item.id}
+          id={item.id}
+          image={item.image}
+          title={item.title}
+          price={item.price}
+        />
+      ))}
+    </div>,
+    <div className="flex items-center justify-start gap-8 min-w-full">
+      {collectionItems.slice(3, 6).map((item) => (
+        <BestSellerCard
+          key={item.id}
+          id={item.id}
+          image={item.image}
+          title={item.title}
+          price={item.price}
+        />
+      ))}
+    </div>,
+    <div className="flex items-center justify-start gap-8 min-w-full">
+      {collectionItems.slice(6, 9).map((item) => (
+        <BestSellerCard
+          key={item.id}
+          id={item.id}
+          image={item.image}
+          title={item.title}
+          price={item.price}
+        />
+      ))}
+    </div>,
   ];
 
   const [activeSlide, setActiveSlide] = useState(0);
+
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     setActiveSlide((prevState) => (prevState + 1) % 3);
+  //   }, 5000);
+
+  //   return () => clearInterval(interval);
+  // }, []);
 
   const handleSlideChange = (index: number) => {
     setActiveSlide(index);
@@ -63,7 +116,7 @@ const BestSellerSection = () => {
     <section className="py-[92px]">
       <div className="container mx-auto flex flex-col md:flex-row gap-8 p-4">
         {/* Content Section */}
-        <div className="md:w-[40%]">
+        <div className="w-[32%]">
           <h1 className="text-5xl font-bold mb-4">Best Seller Products</h1>
           <p className="text-xl mb-12">
             Discover the latest trends in fashion and elevate your style with
@@ -81,43 +134,18 @@ const BestSellerSection = () => {
 
         {/* Best Seller Cards Section */}
         <div className="md:w-[60%] flex flex-col gap-8">
-          <div className="border-2 border-green-600 w-[1140px] overflow-hidden">
+          <div className="w-[980px] overflow-hidden">
             <div
-              className="flex gap-[180px] transition-transform duration-500 ease-in-out border-2 border-red-500"
+              className="flex transition-transform duration-1000 ease-in-out"
               style={{ transform: `translateX(-${activeSlide * 100}%)` }}
             >
-              <div
-                className="flex items-center justify-start gap-8 min-w-[1140px]
-            "
-              >
-                {collectionItems.slice(0, 4).map((item) => (
-                  <BestSellerCard
-                    key={item.id}
-                    id={item.id}
-                    image={item.image}
-                    title={item.title}
-                    price={item.price}
-                  />
-                ))}
-              </div>
-
-              <div className="flex items-center justify-start gap-8 min-w-[1140px]">
-                {collectionItems.slice(4, 7).map((item) => (
-                  <BestSellerCard
-                    key={item.id}
-                    id={item.id}
-                    image={item.image}
-                    title={item.title}
-                    price={item.price}
-                  />
-                ))}
-              </div>
+              {sliderDiv.map((item) => item)}
             </div>
           </div>
 
           {/* Pagination Dots */}
           <div className="flex gap-4">
-            {Array.from({ length: 2 }).map((_, index) => (
+            {Array.from({ length: 3 }).map((_, index) => (
               <span
                 key={index}
                 className={`inline-block w-4 h-4 border-2 border-gray-900 rounded-full cursor-pointer ${
