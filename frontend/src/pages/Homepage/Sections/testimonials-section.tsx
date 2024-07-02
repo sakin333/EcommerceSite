@@ -55,14 +55,12 @@ const TestimonialsSection = () => {
     setCurrentIndex((prevIndex) =>
       prevIndex > 0 ? prevIndex - 1 : testimonials.length - 3
     );
-    console.log("left", currentIndex);
   };
 
   const handleNext = () => {
     setCurrentIndex((prevIndex) =>
       prevIndex < testimonials.length - 3 ? prevIndex + 1 : 0
     );
-    console.log("right", currentIndex);
   };
 
   return (

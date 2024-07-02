@@ -1,3 +1,4 @@
+import Footer from "../../components/footer";
 import Navbar from "../../components/navbar";
 import BestSellerSection from "./Sections/best-seller-section";
 import FeaturesSection from "./Sections/feature-section";
@@ -12,6 +13,7 @@ const Homepage = () => {
       <FeaturesSection />
       <BestSellerSection />
       <TestimonialsSection />
+      <Footer />
     </>
   );
 };

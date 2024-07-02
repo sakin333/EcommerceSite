@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
-    <nav className="py-6">
+    <nav className="py-6 relative z-[999]">
       <div className="container mx-auto flex justify-between items-center px-8">
         <div className="flex items-center">
           <Link to="/" className="text-2xl font-bold text-gray-800">
@@ -41,10 +41,10 @@ const Navbar = () => {
 
         <div className="flex items-center gap-6">
           <Link to="/cart" aria-label="cart">
-            <ShoppingCartIcon className="text-gray-800 text-3xl" />
+            <ShoppingCartIcon className="text-gray-800 text-3xl hover:text-blue-600 transition duration-300" />
           </Link>
           <Link to="/profile" aria-label="profile">
-            <AccountCircleIcon className="text-gray-800 text-3xl" />
+            <AccountCircleIcon className="text-gray-800 text-3xl hover:text-blue-600 transition duration-300" />
           </Link>
         </div>
       </div>
