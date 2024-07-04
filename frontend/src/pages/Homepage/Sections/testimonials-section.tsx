@@ -53,13 +53,13 @@ const TestimonialsSection = () => {
 
   const handlePrev = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex > 0 ? prevIndex - 1 : testimonials.length - 1
+      prevIndex > 0 ? prevIndex - 1 : testimonials.length - 3
     );
   };
 
   const handleNext = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex < testimonials.length - 1 ? prevIndex + 1 : 0
+      prevIndex < testimonials.length - 3 ? prevIndex + 1 : 0
     );
   };
 
@@ -90,7 +90,7 @@ const TestimonialsSection = () => {
           </button>
           <div className="overflow-hidden w-full max-w-[1360px]">
             <div
-              className="flex gap-4 lg:gap-8 transition-transform duration-500 px-2 ml-[6px]"
+              className="flex gap-4 lg:gap-8 transition-transform duration-500 px-2 ml-[6px] lg:ml-0"
               style={{
                 transform: `translateX(-${currentIndex * slidePercentage()}%)`,
               }}

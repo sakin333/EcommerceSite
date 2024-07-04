@@ -2,7 +2,7 @@ import HEROSECTIONIMAGE from "../../../assets/hero-section-image.jpg";
 
 const HeroSection = () => {
   return (
-    <section className="flex flex-col lg:flex-row justify-center items-center lg:items-start lg:h-[100vh] relative pb-[54px] lg:py-[92px] ">
+    <section className="flex flex-col lg:flex-row justify-center items-center lg:h-[100vh] relative pb-[54px] lg:py-[92px] ">
       <div className="absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] hidden lg:block">
         <h1 className="text-[10vw] lg:text-[500px] font-bold uppercase leading-none text-[#f5f8ff] drop-shadow-md text-center">
           Street Wear

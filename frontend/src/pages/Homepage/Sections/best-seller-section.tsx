@@ -1,8 +1,9 @@
-import { MouseEventHandler, ReactElement, useEffect, useState } from "react";
+import { ReactElement, useEffect, useState } from "react";
 import BestSellerCard from "../components/best-seller-card";
+import { CollectionTypes } from "../types/collection-types";
 
 const BestSellerSection = () => {
-  const collectionItems = [
+  const collectionItems: CollectionTypes[] = [
     {
       id: 1,
       image: "https://via.placeholder.com/150",
@@ -138,8 +139,7 @@ const BestSellerSection = () => {
         <div className="w-full lg:w-[60%] flex flex-col items-center lg:items-start gap-8">
           <div className="w-full lg:w-[980px] overflow-hidden">
             <div
-              className="transition-transform duration-1000 ease-in-out hidden lg:flex
-              "
+              className={`transition-transform duration-1000 ease-in-out hidden lg:flex gap-2 `}
               style={{ transform: `translateX(-${activeSlide * 100}%)` }}
             >
               {sliderDiv.map((item) => item)}

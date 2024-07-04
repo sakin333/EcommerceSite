@@ -9,7 +9,7 @@ const Navbar = () => {
 
   return (
     <nav className="py-6 relative z-[999]">
-      <div className="container mx-auto flex justify-between items-center px-6 lg:px-8">
+      <div className="container mx-auto flex justify-between items-center px-4">
         <div className="flex items-center">
           <Link
             to="/"

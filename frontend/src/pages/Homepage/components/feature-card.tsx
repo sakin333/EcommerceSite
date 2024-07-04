@@ -1,4 +1,6 @@
-const FeatureCard = ({ image, title, price }: any) => {
+import { CollectionTypes } from "../types/collection-types";
+
+const FeatureCard = ({ image, title, price }: CollectionTypes) => {
   return (
     <div className="bg-gray-100 p-4 lg:p-6 rounded-lg shadow-lg max-w-[200px] lg:max-w-[300px] w-[100%] max-h-[400px] h-[100%] flex-none transition duration-100 ease-in hover:scale-105 cursor-pointer">
       <img

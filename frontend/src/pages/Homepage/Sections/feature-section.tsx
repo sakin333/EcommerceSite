@@ -1,8 +1,9 @@
 import FeatureCard from "../components/feature-card";
 import FeatureSectionImage from "../../../assets/feature-section-image.jpg";
+import { CollectionTypes } from "../types/collection-types";
 
 const FeatureSection = () => {
-  const collectionItems = [
+  const collectionItems: CollectionTypes[] = [
     {
       id: 1,
       image: "https://via.placeholder.com/150",
