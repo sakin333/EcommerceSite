@@ -1,5 +1,5 @@
 import { ChangeEvent, useState } from "react";
-import { categories, colors, ratings } from "../constants/data";
+import { categories, colors } from "../constants/data";
 import { FaChevronRight } from "react-icons/fa";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 
@@ -7,7 +7,8 @@ const Sidebar = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>("");
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 100]);
   const [selectedColor, setSelectedColor] = useState<string>("");
-  const [selectedRating, setSelectedRating] = useState<number | null>(null);
+  const [selectedRating, setSelectedRating] = useState<number>(0);
+  const [hoverRating, setHoverRating] = useState<number>(0);
 
   const handlePriceChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -18,6 +19,20 @@ const Sidebar = () => {
         : [prevRange[0], newValue];
     });
   };
+
+  const handleRatingChange = (rating: number) => {
+    const filledStars = Math.round(rating);
+    const emptyStars = 5 - filledStars;
+    return Array(filledStars)
+      .fill(<AiFillStar className="text-xl lg:text-3xl text-blue-600" />)
+      .concat(
+        Array(emptyStars).fill(
+          <AiOutlineStar className="text-xl lg:text-3xl text-gray-400" />
+        )
+      );
+  };
+
+  const displayedRating = hoverRating || selectedRating;
 
   return (
     <div className="">
@@ -76,7 +91,7 @@ const Sidebar = () => {
         <h2 className="text-sm md:text-lg font-semibold mb-4 px-[6px]">
           Color
         </h2>
-        <div className="grid grid-cols-4 gap-4">
+        <div className="grid grid-cols-3 lg:grid-cols-4 gap-4">
           {colors.map((color) => (
             <div className="flex flex-col items-center">
               <button
@@ -98,18 +113,16 @@ const Sidebar = () => {
         <h2 className="text-sm md:text-lg font-semibold mb-4 px-[6px]">
           Rating
         </h2>
-        <ul className="flex gap-4 px-2">
-          {ratings.map((rating) => (
-            <li key={rating} className="mb-2 last:mb-0">
+        <ul className="flex gap-2 lg:gap-4 px-2">
+          {handleRatingChange(displayedRating).map((star, index) => (
+            <li key={index} className="mb-2 last:mb-0">
               <button
-                className={"w-full"}
-                onClick={() => setSelectedRating(rating)}
+                className="w-full"
+                onClick={() => setSelectedRating(index + 1)}
+                onMouseEnter={() => setHoverRating(index + 1)}
+                onMouseLeave={() => setHoverRating(0)}
               >
-                {selectedRating === rating ? (
-                  <AiFillStar className="text-3xl text-blue-600" />
-                ) : (
-                  <AiOutlineStar className="text-3xl text-gray-400" />
-                )}
+                {star}
               </button>
             </li>
           ))}
