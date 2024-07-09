@@ -2,10 +2,13 @@ export type Product = {
   id: number;
   name: string;
   brandName: string;
-  color: string;
+  colour: string;
   imageUrl: string;
-  price: string;
-  url: string;
+  price: {
+    value: number;
+    text: string;
+  };
+  url?: string;
 };
 
 export type InitialState = {

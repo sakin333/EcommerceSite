@@ -14,7 +14,7 @@
     "@emotion/styled": "^11.11.5",
     "@mui/icons-material": "^5.15.20",
     "@mui/material": "^5.15.20",
-    "@reduxjs/toolkit": "^2.2.6",
+    "@reduxjs/toolkit": "^2.2.5",
     "axios": "^1.7.2",
     "dotenv": "^16.4.5",
     "react": "^18.3.1",
@@ -24,6 +24,7 @@
     "react-router-dom": "^6.24.0"
   },
   "devDependencies": {
+    "@types/node": "^20.14.10",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@typescript-eslint/eslint-plugin": "^7.13.1",

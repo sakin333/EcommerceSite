@@ -1,57 +1,20 @@
+import { Link } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import ProductCard from "../components/products-cards";
 import Sidebar from "../components/sidebar";
+import { RootState } from "../../../app/store";
+import { useEffect } from "react";
+import { fetchProducts } from "../../../features/products/productSlice";
 
 const ProductsListSection = () => {
-  const products = [
-    {
-      id: 1,
-      image: "https://via.placeholder.com/150",
-      name: "Sample Product 1",
-      description: "This is a description of the sample product.",
-      price: 29.99,
-      tag: "Hot",
-    },
-    {
-      id: 2,
-      image: "https://via.placeholder.com/150",
-      name: "Sample Product 2",
-      description: "This is a description of the sample product.",
-      price: 29.99,
-      tag: "Hot",
-    },
-    {
-      id: 3,
-      image: "https://via.placeholder.com/150",
-      name: "Sample Product 3",
-      description: "This is a description of the sample product.",
-      price: 29.99,
-      tag: "Hot",
-    },
-    {
-      id: 4,
-      image: "https://via.placeholder.com/150",
-      name: "Sample Product 1",
-      description: "This is a description of the sample product.",
-      price: 29.99,
-      tag: "Hot",
-    },
-    {
-      id: 5,
-      image: "https://via.placeholder.com/150",
-      name: "Sample Product 2",
-      description: "This is a description of the sample product.",
-      price: 29.99,
-      tag: "Hot",
-    },
-    {
-      id: 6,
-      image: "https://via.placeholder.com/150",
-      name: "Sample Product 3",
-      description: "This is a description of the sample product.",
-      price: 29.99,
-      tag: "Hot",
-    },
-  ];
+  const dispatch = useAppDispatch();
+  const { products, loading, error } = useAppSelector(
+    (state: RootState) => state.products
+  );
+
+  useEffect(() => {
+    dispatch(fetchProducts());
+  }, [dispatch]);
 
   return (
     <section className="bg-white py-[54px] lg:py-[92px]">
@@ -61,17 +24,21 @@ const ProductsListSection = () => {
         </div>
 
         <div className="px-4 lg:px-8 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {products.map((product) => (
-            <div key={product.id} className="mb-4">
+          {products?.map((product) => (
+            <Link
+              to={`product/${product.id}`}
+              key={product.id}
+              className="mb-4"
+            >
               <ProductCard
                 id={product.id}
-                image={product.image}
+                imageUrl={product.imageUrl}
                 name={product.name}
-                description={product.description}
                 price={product.price}
-                tag={product.tag}
+                colour={product.colour}
+                brandName={product.brandName}
               />
-            </div>
+            </Link>
           ))}
         </div>
       </div>

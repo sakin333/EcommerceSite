@@ -1,7 +1,16 @@
 import { useState } from "react";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
+import { Product } from "../../../features/products/productTypes";
+import { ellipsis } from "../../../utilities/ellipsis";
 
-const ProductCard = ({ id, image, name, description, price, tag }: any) => {
+const ProductCard = ({
+  id,
+  imageUrl,
+  name,
+  price,
+  colour,
+  brandName,
+}: Product) => {
   const [isWishlist, setIsWishlist] = useState(false);
 
   const handleWishlist = () => {
@@ -13,42 +22,40 @@ const ProductCard = ({ id, image, name, description, price, tag }: any) => {
   };
 
   return (
-    <div className="min-w-[180px] max-w-[340px] bg-white rounded-lg shadow-lg">
-      <div className="relative">
+    <div className="min-w-[180px] max-w-[340px] h-full max-h-[440px] md:max-h-[540px] bg-white rounded-lg shadow-lg flex flex-col">
+      <div className="h-[60%]">
         <img
-          src={image}
+          src={`https://${imageUrl}`}
           alt={name}
-          className="w-full h-30 md:h-82 object-cover rounded-t-lg"
+          className="w-full h-full object-cover rounded-t-lg"
         />
-        {tag && (
-          <span
-            className={`absolute top-2 left-2 px-2 py-1 sm:px-4 text-xs sm:text-sm font-semibold rounded bg-blue-300 text-blue-900`}
-          >
-            {tag}
-          </span>
-        )}
       </div>
-      <div className="mt-2 flex flex-col p-2 sm:p-4">
-        <h3 className="text-sm md:text-lg font-semibold mb-2">{name}</h3>
-        <p className="text-xs md:text-base text-gray-600 mb-4 hidden md:block">
-          {description}
-        </p>
-        <div className="flex items-center justify-between mb-4">
-          <span className="text-sm md:text-xl font-bold">
-            ${price.toFixed(2)}
-          </span>
-          <button
-            className={`p-2 rounded-full text-white ${
-              isWishlist ? "bg-red-500" : "bg-gray-300"
-            }`}
-            onClick={handleWishlist}
+      <div className="h-[40%] p-2 sm:p-4 flex flex-col justify-between">
+        <div className="h-[75%]">
+          <h3
+            className="text-sm md:text-lg font-semibold mb-2"
+            title={`${name}`}
           >
-            {isWishlist ? (
-              <AiFillHeart className="text-sm lg:text-lg" />
-            ) : (
-              <AiOutlineHeart className="text-sm lg:text-lg" />
-            )}
-          </button>
+            {ellipsis(name, 40)}
+          </h3>
+          <span className="text-xs md:text-base text-gray-600 mb-4">
+            {brandName}
+          </span>
+          <div className="flex items-center justify-between mb-4">
+            <span className="text-sm md:text-xl font-bold">{price.text}</span>
+            <button
+              className={`p-2 rounded-full text-white ${
+                isWishlist ? "bg-red-500" : "bg-gray-300"
+              }`}
+              onClick={handleWishlist}
+            >
+              {isWishlist ? (
+                <AiFillHeart className="text-sm lg:text-lg" />
+              ) : (
+                <AiOutlineHeart className="text-sm lg:text-lg" />
+              )}
+            </button>
+          </div>
         </div>
         <button
           className="w-full text-xs md:text-base bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600"
