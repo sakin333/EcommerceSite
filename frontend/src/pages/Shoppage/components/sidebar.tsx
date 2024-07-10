@@ -1,7 +1,9 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { categories, colors } from "../constants/data";
 import { FaChevronRight } from "react-icons/fa";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
+import { useAppDispatch, useAppSelector } from "../../../app/hooks";
+import { fetchCategories } from "../../../features/categories/categoriesSlice";
 
 const Sidebar = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>("");
@@ -9,6 +11,15 @@ const Sidebar = () => {
   const [selectedColor, setSelectedColor] = useState<string>("");
   const [selectedRating, setSelectedRating] = useState<number>(0);
   const [hoverRating, setHoverRating] = useState<number>(0);
+
+  const { loading, categories, error } = useAppSelector(
+    (state) => state.category
+  );
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchCategories());
+  }, [dispatch]);
 
   const handlePriceChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;

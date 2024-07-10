@@ -12,7 +12,7 @@ const API_KEY = "e12746aceamsh699f10be78982b1p1af910jsn0cc3c4d70ec0";
 const BASE_URL = "https://asos10.p.rapidapi.com/api/v1/getProductDetails";
 
 const fetchProductDetail: any = createAsyncThunk(
-  "productDetail/fetchProductDetail",
+  "productDetails/fetchProductDetails",
   async (productId: string) => {
     const response = await axios.get(BASE_URL, {
       params: {
