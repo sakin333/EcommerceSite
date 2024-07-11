@@ -1,19 +1,33 @@
-import { ChangeEvent, useEffect, useState } from "react";
-import { categories, colors } from "../constants/data";
-import { FaChevronRight } from "react-icons/fa";
+import React, { ChangeEvent, useEffect, useState } from "react";
+import { colors } from "../constants/data";
+import { FaChevronDown, FaChevronUp, FaCircle } from "react-icons/fa";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
+import { Brands } from "../../../features/categories/categoriesTypes";
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
+import { RootState } from "../../../app/store";
 import { fetchCategories } from "../../../features/categories/categoriesSlice";
 
-const Sidebar = () => {
-  const [selectedCategory, setSelectedCategory] = useState<string>("");
-  const [priceRange, setPriceRange] = useState<[number, number]>([0, 100]);
+type SidebarProps = {
+  onCategorySelect: (categoryId: string | null) => void;
+  onPriceSelect: (priceRange: number[]) => void;
+  priceRange: number[];
+};
+
+const Sidebar: React.FC<SidebarProps> = ({
+  onCategorySelect,
+  onPriceSelect,
+  priceRange,
+}) => {
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [selectedCategoryBrand, setSelectedCategoryBrand] = useState<
+    string | null
+  >(null);
   const [selectedColor, setSelectedColor] = useState<string>("");
   const [selectedRating, setSelectedRating] = useState<number>(0);
   const [hoverRating, setHoverRating] = useState<number>(0);
 
-  const { loading, categories, error } = useAppSelector(
-    (state) => state.category
+  const { loading, categories } = useAppSelector(
+    (state: RootState) => state.category
   );
   const dispatch = useAppDispatch();
 
@@ -21,14 +35,19 @@ const Sidebar = () => {
     dispatch(fetchCategories());
   }, [dispatch]);
 
+  const handleCategoryClick = (categoryId: string) => {
+    const newCategory =
+      selectedCategoryBrand === categoryId ? null : categoryId;
+    setSelectedCategoryBrand(newCategory);
+    onCategorySelect(newCategory);
+  };
+
   const handlePriceChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setPriceRange((prevRange) => {
-      const newValue = parseInt(value, 10);
-      return name === "min"
-        ? [newValue, prevRange[1]]
-        : [prevRange[0], newValue];
-    });
+    const newValue = parseInt(value, 10);
+    const newPriceRange =
+      name === "min" ? [newValue, priceRange[1]] : [priceRange[0], newValue];
+    onPriceSelect(newPriceRange);
   };
 
   const handleRatingChange = (rating: number) => {
@@ -45,6 +64,50 @@ const Sidebar = () => {
 
   const displayedRating = hoverRating || selectedRating;
 
+  // Mock Data
+  const mockCategories: Brands[] = [
+    {
+      id: "1",
+      content: {
+        title: "Men's Fashion",
+      },
+      children: [
+        {
+          categoryId: "1-1",
+          title: "Shirts",
+        },
+        {
+          categoryId: "1-2",
+          title: "Pants",
+        },
+        {
+          categoryId: "1-3",
+          title: "Shoes",
+        },
+      ],
+    },
+    {
+      id: "2",
+      content: {
+        title: "Women's Fashion",
+      },
+      children: [
+        {
+          categoryId: "2-1",
+          title: "Dresses",
+        },
+        {
+          categoryId: "2-2",
+          title: "Tops",
+        },
+        {
+          categoryId: "2-3",
+          title: "Accessories",
+        },
+      ],
+    },
+  ];
+
   return (
     <div className="">
       {/* Categories */}
@@ -54,17 +117,43 @@ const Sidebar = () => {
         </h2>
         <ul>
           {categories.map((category) => (
-            <li key={category} className="mb-2">
+            <li key={category.id} className="mb-2">
               <button
-                className={`w-full text-left p-2 rounded flex justify-between items-center ${
-                  selectedCategory === category
-                    ? "bg-blue-500 text-white"
-                    : "hover:bg-gray-200"
-                }`}
-                onClick={() => setSelectedCategory(category)}
+                className={`w-full text-left p-2 rounded flex justify-between items-center hover:bg-gray-100`}
+                onClick={() =>
+                  setSelectedCategory(
+                    selectedCategory === category.id ? null : category.id
+                  )
+                }
               >
-                {category} <FaChevronRight className="text-sm" />
+                {category.content.title}
+                {selectedCategory === category.id ? (
+                  <FaChevronUp className="text-sm" />
+                ) : (
+                  <FaChevronDown className="text-sm" />
+                )}
               </button>
+              {selectedCategory === category.id && (
+                <ul className="pl-4 mt-2">
+                  {category.children.map((child) => (
+                    <li
+                      key={child.categoryId}
+                      className="mb-1 hover:bg-gray-100"
+                    >
+                      <button
+                        className={`w-full text-left p-2 rounded flex items-center gap-2 ${
+                          selectedCategoryBrand === child.categoryId
+                            ? "bg-blue-500 text-white"
+                            : "hover:bg-gray-100"
+                        }`}
+                        onClick={() => handleCategoryClick(child.categoryId)}
+                      >
+                        <FaCircle className="text-[6px]" /> {child.title}
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              )}
             </li>
           ))}
         </ul>

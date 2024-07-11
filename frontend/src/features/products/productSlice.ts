@@ -13,10 +13,10 @@ const BASE_URL = "https://asos10.p.rapidapi.com/api/v1/getProductList";
 
 const fetchProducts: any = createAsyncThunk(
   "products/fetchProducts",
-  async () => {
+  async (categoryId: string) => {
     const response = await axios.get(BASE_URL, {
       params: {
-        categoryId: "19953",
+        categoryId: categoryId,
         currency: "USD",
         sizeSchema: "US",
         limit: "50",

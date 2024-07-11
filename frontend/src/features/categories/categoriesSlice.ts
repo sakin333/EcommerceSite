@@ -24,7 +24,7 @@ const fetchCategories: any = createAsyncThunk(
     const categories = response.data.data.brands.map((item: any) => ({
       id: item.id,
       content: {
-        title: item.title,
+        title: item.content.title,
       },
       children: item.children.map((brand: any) => ({
         categoryId: brand.link.categoryId,
