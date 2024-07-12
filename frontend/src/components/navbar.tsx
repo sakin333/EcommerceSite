@@ -22,25 +22,25 @@ const Navbar = () => {
         <div className="hidden sm:flex gap-10">
           <Link
             to="/"
-            className="text-gray-800 font-semibold hover:text-blue-600 transition duration-300"
+            className="text-gray-800 font-semibold active:text-blue-600 hover:text-blue-600 transition duration-300"
           >
             Home
           </Link>
           <Link
             to="/shop"
-            className="text-gray-800 font-semibold hover:text-blue-600 transition duration-300"
+            className="text-gray-800 font-semibold active:text-blue-600 hover:text-blue-600 transition duration-300"
           >
             Shop
           </Link>
           <Link
             to="/deals"
-            className="text-gray-800 font-semibold hover:text-blue-600 transition duration-300"
+            className="text-gray-800 font-semibold active:text-blue-600 hover:text-blue-600 transition duration-300"
           >
             Deals
           </Link>
           <Link
             to="/contact"
-            className="text-gray-800 font-semibold hover:text-blue-600 transition duration-300"
+            className="text-gray-800 font-semibold active:text-blue-600 hover:text-blue-600 transition duration-300"
           >
             Contact
           </Link>
