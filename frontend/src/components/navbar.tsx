@@ -39,6 +39,12 @@ const Navbar = () => {
             Deals
           </Link>
           <Link
+            to="/lookbook"
+            className="text-gray-800 font-semibold active:text-blue-600 hover:text-blue-600 transition duration-300"
+          >
+            Lookbook
+          </Link>
+          <Link
             to="/contact"
             className="text-gray-800 font-semibold active:text-blue-600 hover:text-blue-600 transition duration-300"
           >
