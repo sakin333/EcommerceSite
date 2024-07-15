@@ -13,6 +13,29 @@ type SidebarProps = {
   priceRange: number[];
 };
 
+const mockBrands: Brands[] = [
+  {
+    id: "1",
+    content: {
+      title: "Top Fashion Brands",
+    },
+    children: [
+      {
+        categoryId: "101",
+        title: "Fashionista",
+      },
+      {
+        categoryId: "102",
+        title: "Denim Deluxe",
+      },
+      {
+        categoryId: "103",
+        title: "Sunshine Couture",
+      },
+    ],
+  },
+];
+
 const Sidebar: React.FC<SidebarProps> = ({
   onCategorySelect,
   onPriceSelect,
@@ -26,14 +49,14 @@ const Sidebar: React.FC<SidebarProps> = ({
   const [selectedRating, setSelectedRating] = useState<number>(0);
   const [hoverRating, setHoverRating] = useState<number>(0);
 
-  const { loading, categories } = useAppSelector(
-    (state: RootState) => state.category
-  );
+  // const { loading, categories } = useAppSelector(
+  //   (state: RootState) => state.category
+  // );
   const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    dispatch(fetchCategories());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(fetchCategories());
+  // }, [dispatch]);
 
   const handleCategoryClick = (categoryId: string) => {
     const newCategory =
@@ -64,50 +87,6 @@ const Sidebar: React.FC<SidebarProps> = ({
 
   const displayedRating = hoverRating || selectedRating;
 
-  // Mock Data
-  const mockCategories: Brands[] = [
-    {
-      id: "1",
-      content: {
-        title: "Men's Fashion",
-      },
-      children: [
-        {
-          categoryId: "1-1",
-          title: "Shirts",
-        },
-        {
-          categoryId: "1-2",
-          title: "Pants",
-        },
-        {
-          categoryId: "1-3",
-          title: "Shoes",
-        },
-      ],
-    },
-    {
-      id: "2",
-      content: {
-        title: "Women's Fashion",
-      },
-      children: [
-        {
-          categoryId: "2-1",
-          title: "Dresses",
-        },
-        {
-          categoryId: "2-2",
-          title: "Tops",
-        },
-        {
-          categoryId: "2-3",
-          title: "Accessories",
-        },
-      ],
-    },
-  ];
-
   return (
     <div className="">
       {/* Categories */}
@@ -116,7 +95,7 @@ const Sidebar: React.FC<SidebarProps> = ({
           Categories
         </h2>
         <ul>
-          {categories.map((category) => (
+          {mockBrands.map((category) => (
             <li key={category.id} className="mb-2">
               <button
                 className={`w-full text-left p-2 rounded flex justify-between items-center hover:bg-gray-100`}
@@ -177,9 +156,10 @@ const Sidebar: React.FC<SidebarProps> = ({
           <span>-</span>
           <input
             type="number"
-            name="min"
+            name="max"
             className="w-16 p-2 border border-gray-300 rounded"
             min={priceRange[0]}
+            max="9999"
             value={priceRange[1]}
             onChange={handlePriceChange}
           />
