@@ -1,12 +1,9 @@
-import { Link } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import ProductCard from "../components/products-cards";
 import Sidebar from "../components/sidebar";
 import { RootState } from "../../../app/store";
 import { useEffect, useMemo, useState } from "react";
 import { fetchProducts } from "../../../features/products/productSlice";
-import { Brands } from "../../../features/categories/categoriesTypes";
-import { Product } from "../../../features/products/productTypes";
 import { mockProducts } from "../../../mockData";
 
 const ProductsListSection = () => {

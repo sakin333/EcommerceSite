@@ -1,41 +1,8 @@
 import FeatureCard from "../components/feature-card";
 import FeatureSectionImage from "../../../assets/feature-section-image.jpg";
-import { CollectionTypes } from "../types/collection-types";
+import { collectionItems } from "../../../mockData";
 
 const FeatureSection = () => {
-  const collectionItems: CollectionTypes[] = [
-    {
-      id: 1,
-      image: "https://via.placeholder.com/150",
-      title: "Trendy Jacket",
-      price: "$120",
-    },
-    {
-      id: 2,
-      image: "https://via.placeholder.com/150",
-      title: "Stylish Sneakers",
-      price: "$90",
-    },
-    {
-      id: 3,
-      image: "https://via.placeholder.com/150",
-      title: "Casual Jeans",
-      price: "$70",
-    },
-    {
-      id: 4,
-      image: "https://via.placeholder.com/150",
-      title: "Classic Watch",
-      price: "$150",
-    },
-    {
-      id: 2,
-      image: "https://via.placeholder.com/150",
-      title: "Stylish Sneakers",
-      price: "$90",
-    },
-  ];
-
   return (
     <section className="bg-white py-[54px] lg:py-[calc(92px+46px)]">
       <div className="container mx-auto px-6 lg:px-0">

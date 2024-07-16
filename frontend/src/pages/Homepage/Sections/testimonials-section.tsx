@@ -1,54 +1,9 @@
 import { useState } from "react";
 import TestimonialsCard from "../components/testimonials-card";
-import { TestimonialsType } from "../types/testimonial-types";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { testimonials } from "../../../mockData";
 
 const TestimonialsSection = () => {
-  const testimonials: TestimonialsType[] = [
-    {
-      id: 1,
-      name: "Jane Doe",
-      role: "CEO at Company",
-      image: "https://via.placeholder.com/150",
-      text: "This service is amazing! It has significantly improved our team's productivity.",
-    },
-    {
-      id: 2,
-      name: "John Smith",
-      role: "Marketing Director",
-      image: "https://via.placeholder.com/150",
-      text: "A fantastic product with great support. Our revenue has increased since using it.",
-    },
-    {
-      id: 3,
-      name: "Alice Johnson",
-      role: "Product Manager",
-      image: "https://via.placeholder.com/150",
-      text: "Highly recommended. The user interface is intuitive and easy to navigate.",
-    },
-    {
-      id: 4,
-      name: "Caitlin Clark",
-      role: "Product Manager",
-      image: "https://via.placeholder.com/150",
-      text: "Highly recommended. The user interface is intuitive and easy to navigate.",
-    },
-    {
-      id: 5,
-      name: "Park Chaewon",
-      role: "Product Manager",
-      image: "https://via.placeholder.com/150",
-      text: "Highly recommended. The user interface is intuitive and easy to navigate.",
-    },
-    {
-      id: 6,
-      name: "Kim Jisoo",
-      role: "Product Manager",
-      image: "https://via.placeholder.com/150",
-      text: "Highly recommended. The user interface is intuitive and easy to navigate.",
-    },
-  ];
-
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const handlePrev = () => {

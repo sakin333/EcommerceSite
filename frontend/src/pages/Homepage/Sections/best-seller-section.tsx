@@ -1,65 +1,8 @@
 import { ReactElement, useEffect, useState } from "react";
 import BestSellerCard from "../components/best-seller-card";
-import { CollectionTypes } from "../types/collection-types";
+import { collectionItems } from "../../../mockData";
 
 const BestSellerSection = () => {
-  const collectionItems: CollectionTypes[] = [
-    {
-      id: 1,
-      image: "https://via.placeholder.com/150",
-      title: "Trendy Jacket",
-      price: "$120",
-    },
-    {
-      id: 2,
-      image: "https://via.placeholder.com/150",
-      title: "Stylish Sneakers",
-      price: "$90",
-    },
-    {
-      id: 3,
-      image: "https://via.placeholder.com/150",
-      title: "Casual Jeans",
-      price: "$70",
-    },
-    {
-      id: 4,
-      image: "https://via.placeholder.com/150",
-      title: "Classic Watch",
-      price: "$150",
-    },
-    {
-      id: 5,
-      image: "https://via.placeholder.com/150",
-      title: "Trendy Jacket",
-      price: "$120",
-    },
-    {
-      id: 6,
-      image: "https://via.placeholder.com/150",
-      title: "Stylish Sneakers",
-      price: "$90",
-    },
-    {
-      id: 7,
-      image: "https://via.placeholder.com/150",
-      title: "Casual Jeans",
-      price: "$70",
-    },
-    {
-      id: 8,
-      image: "https://via.placeholder.com/150",
-      title: "Classic Watch",
-      price: "$150",
-    },
-    {
-      id: 9,
-      image: "https://via.placeholder.com/150",
-      title: "Casual Jeans",
-      price: "$70",
-    },
-  ];
-
   const sliderDiv: ReactElement[] = [
     <div
       className="flex items-center justify-start gap-4 lg:gap-8 min-w-full

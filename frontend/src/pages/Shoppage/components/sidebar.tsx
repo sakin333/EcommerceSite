@@ -1,7 +1,6 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
 import { FaChevronDown, FaChevronUp, FaCircle } from "react-icons/fa";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
-import { Brands } from "../../../features/categories/categoriesTypes";
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import { RootState } from "../../../app/store";
 import { fetchCategories } from "../../../features/categories/categoriesSlice";

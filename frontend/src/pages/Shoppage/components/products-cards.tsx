@@ -13,14 +13,7 @@ import {
 import { Link } from "react-router-dom";
 import { FaArrowAltCircleRight } from "react-icons/fa";
 
-const ProductCard = ({
-  id,
-  imageUrl,
-  name,
-  price,
-  colour,
-  brandName,
-}: Product) => {
+const ProductCard = ({ id, imageUrl, name, price, brandName }: Product) => {
   const [isWishlist, setIsWishlist] = useState(false);
   const { cartItems, cartQuantity } = useAppSelector((state) => state.cart);
   const dispatch = useAppDispatch();

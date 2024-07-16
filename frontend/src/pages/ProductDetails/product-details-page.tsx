@@ -3,7 +3,6 @@ import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { useParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { fetchProductDetail } from "../../features/productDetails/productDetailsSlice";
-import { ProductDetail } from "../../features/productDetails/productDetailsTypes";
 import {
   FaFacebookF,
   FaInstagram,
