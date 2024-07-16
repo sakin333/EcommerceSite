@@ -183,8 +183,8 @@ const ProductDetails = () => {
   return (
     <section className="py-[52px] lg:py-[92px]">
       <div className="container mx-auto p-4">
-        <div className="flex flex-col md:flex-row items-start gap-4 mb-16 lg:mb-24">
-          <div className="flex flex-col gap-4">
+        <div className="flex flex-col md:flex-row items-center lg:items-start gap-4 mb-16 lg:mb-24">
+          <div className="flex flex-row lg:flex-col gap-6 md:gap-4">
             {product.media.images.map((image, index) => (
               <div
                 className="w-[100px] h-[100px] cursor-pointer"
@@ -214,7 +214,9 @@ const ProductDetails = () => {
             <h1 className="text-2xl md:text-4xl font-bold mb-4">
               {product.name}
             </h1>
-            <p className="text-lg text-gray-700 mb-2">Brand: {product.brand}</p>
+            <p className="text-sm lg:text-lg text-gray-700 mb-4">
+              Brand: {product.brand}
+            </p>
             <span className="text-2xl font-bold text-green-600 mb-4">
               {product.price.text}
             </span>
@@ -287,7 +289,7 @@ const ProductDetails = () => {
             </div>
           </div>
         </div>
-        <div>
+        <div className="px-4">
           <div className="flex gap-8 md:gap-12 mb-4 lg:mb-8">
             <button
               className={`text-lg md:text-xl font-semibold ${
