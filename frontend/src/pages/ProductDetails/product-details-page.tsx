@@ -10,122 +10,13 @@ import {
   FaLinkedinIn,
   FaTwitter,
 } from "react-icons/fa";
-
-const mockProductDetails: ProductDetail[] = [
-  {
-    id: 1,
-    name: "Classic Leather Jacket",
-    description:
-      "A timeless black leather jacket that never goes out of style.",
-    brand: "Fashionista",
-    media: {
-      images: [
-        {
-          url: "https://www.wilsonsleather.com/media/catalog/product/m/m/mm1z1778_mm1z1778c01_1.jpg?optimize=medium&bg-color=255,255,255&fit=bounds&height=1542&width=1300&canvas=1300:1542",
-          colorWayId: "black01",
-          color: "Black",
-          isPrimary: true,
-        },
-        {
-          url: "https://cdn-img.prettylittlething.com/f/c/2/3/fc23e6d2955ada665fb7abc6d903b26f79d7560b_clt5204_1.jpg?imwidth=600",
-          colorWayId: "black02",
-          color: "Black",
-          isPrimary: false,
-        },
-        {
-          url: "https://shop.mango.com/assets/rcs/pics/static/T6/fotos/S/67030445_99.jpg?imwidth=2048&imdensity=1&ts=1703093595446",
-          colorWayId: "black03",
-          color: "Black",
-          isPrimary: false,
-        },
-      ],
-    },
-    info: {
-      aboutMe: "100% genuine leather. Dry clean only.",
-      sizeAndFit: "Model is wearing size M.",
-      careInfo: "Use leather conditioner to keep the material soft.",
-    },
-    productType: {
-      id: 1,
-      name: "Jacket",
-    },
-    price: {
-      value: 120.99,
-      text: "$120.99",
-    },
-  },
-  {
-    id: 2,
-    name: "Slim Fit Jeans",
-    description: "Stylish blue jeans with a slim fit design.",
-    brand: "Denim Deluxe",
-    media: {
-      images: [
-        {
-          url: "https://www.wilsonsleather.com/media/catalog/product/m/m/mm1z1778_mm1z1778c01_1.jpg?optimize=medium&bg-color=255,255,255&fit=bounds&height=1542&width=1300&canvas=1300:1542",
-          colorWayId: "blue01",
-          color: "Blue",
-          isPrimary: true,
-        },
-        {
-          url: "https://example.com/images/slim-fit-jeans-2.jpg",
-          colorWayId: "blue02",
-          color: "Blue",
-          isPrimary: false,
-        },
-      ],
-    },
-    info: {
-      aboutMe: "98% cotton, 2% elastane. Machine washable.",
-      sizeAndFit: "Model is wearing size 32.",
-      careInfo: "Wash inside out to preserve color.",
-    },
-    productType: {
-      id: 2,
-      name: "Jeans",
-    },
-    price: {
-      value: 49.99,
-      text: "$49.99",
-    },
-  },
-  {
-    id: 3,
-    name: "Summer Floral Dress",
-    description:
-      "A beautiful yellow dress with a floral print, perfect for summer.",
-    brand: "Sunshine Couture",
-    media: {
-      images: [
-        {
-          url: "https://www.wilsonsleather.com/media/catalog/product/m/m/mm1z1778_mm1z1778c01_1.jpg?optimize=medium&bg-color=255,255,255&fit=bounds&height=1542&width=1300&canvas=1300:1542",
-          colorWayId: "yellow01",
-          color: "Yellow",
-          isPrimary: true,
-        },
-        {
-          url: "https://example.com/images/summer-floral-dress-2.jpg",
-          colorWayId: "yellow02",
-          color: "Yellow",
-          isPrimary: false,
-        },
-      ],
-    },
-    info: {
-      aboutMe: "100% cotton. Machine washable.",
-      sizeAndFit: null,
-      careInfo: "Wash with similar colors.",
-    },
-    productType: {
-      id: 3,
-      name: "Dress",
-    },
-    price: {
-      value: 75.5,
-      text: "$75.50",
-    },
-  },
-];
+import { mockProductDetails } from "../../mockData";
+import {
+  decreaseCartQuantity,
+  getCartQuantity,
+  increaseCartQuantity,
+  removeFromCart,
+} from "../../features/cart/cartSlice";
 
 const ProductDetails = () => {
   const { productId } = useParams();
@@ -141,6 +32,7 @@ const ProductDetails = () => {
       )[0]
   );
 
+  const { cartItems } = useAppSelector((state) => state.cart);
   const dispatch = useAppDispatch();
   // const { product, loading, error } = useAppSelector(
   //   (state) => state.productDetail
@@ -156,6 +48,9 @@ const ProductDetails = () => {
 
   // }, [productId])
 
+  const quantity =
+    cartItems.find((item) => item.id === product.id)?.quantity || 0;
+
   const handleImageChange = (index: number) => {
     setFade(true);
     setTimeout(() => {
@@ -168,8 +63,19 @@ const ProductDetails = () => {
     setIsWishlist(!isWishlist);
   };
 
-  const handleAddToCart = () => {
-    console.log(`Product ${productId} added to cart`);
+  const handleRemoveItem = (id: number) => {
+    dispatch(removeFromCart(id));
+    dispatch(getCartQuantity());
+  };
+
+  const handleIncreaseQuantity = (id: number) => {
+    dispatch(increaseCartQuantity(id));
+    dispatch(getCartQuantity());
+  };
+
+  const handleDecreaseQuantity = (id: number) => {
+    dispatch(decreaseCartQuantity(id));
+    dispatch(getCartQuantity());
   };
 
   // if (loading) {
@@ -220,7 +126,7 @@ const ProductDetails = () => {
             <span className="text-2xl font-bold text-green-600 mb-4">
               {product.price.text}
             </span>
-            <div className="flex items-center mt-4 mb-8">
+            <div className="flex items-center mt-4 mb-8 gap-4 lg:gap-8">
               <button
                 className={`p-2 rounded-full text-white mr-4 ${
                   isWishlist ? "bg-red-500" : "bg-gray-300"
@@ -233,12 +139,43 @@ const ProductDetails = () => {
                   <AiOutlineHeart className="text-xl" />
                 )}
               </button>
-              <button
-                className="w-full md:w-auto text-base bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600"
-                onClick={handleAddToCart}
-              >
-                Add to Cart
-              </button>
+              {quantity === 0 ? (
+                <button
+                  className="w-full md:w-auto text-base bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600"
+                  onClick={() => handleIncreaseQuantity(product.id)}
+                >
+                  Add to Cart
+                </button>
+              ) : (
+                <div className="flex flex-col items-center gap-4">
+                  <div className="flex items-center justify-center gap-4">
+                    <button
+                      className="w-8 h-8 text-lg lg:text-xl font-bold rounded-full hover:bg-gray-200 flex items-center justify-center shadow-md border border-gray-100"
+                      onClick={() => handleDecreaseQuantity(product.id)}
+                    >
+                      -
+                    </button>
+                    <div className="text-gray-500">
+                      <span className="text-gray-900 text-lg lg:text-xl font-bold mr-2">
+                        {quantity}
+                      </span>{" "}
+                      in cart
+                    </div>
+                    <button
+                      className="w-8 h-8 text-lg lg:text-xl font-bold rounded-full hover:bg-gray-200 flex items-center justify-center shadow-md border border-gray-100"
+                      onClick={() => handleIncreaseQuantity(product.id)}
+                    >
+                      +
+                    </button>
+                  </div>
+                  <button
+                    className="w-full text-xs md:text-base bg-red-500 text-white py-2 rounded-lg hover:bg-red-600"
+                    onClick={() => handleRemoveItem(product.id)}
+                  >
+                    Remove
+                  </button>
+                </div>
+              )}
             </div>
 
             <div className="text-gray-700 mb-8">

@@ -5,6 +5,7 @@ import { Brands } from "../../../features/categories/categoriesTypes";
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import { RootState } from "../../../app/store";
 import { fetchCategories } from "../../../features/categories/categoriesSlice";
+import { mockBrands } from "../../../mockData";
 
 type SidebarProps = {
   onCategorySelect: (categoryId: string | null) => void;
@@ -14,29 +15,6 @@ type SidebarProps = {
   onColorSelect: (selectedColor: string) => void;
   colors: string[];
 };
-
-const mockBrands: Brands[] = [
-  {
-    id: "1",
-    content: {
-      title: "Top Fashion Brands",
-    },
-    children: [
-      {
-        categoryId: "101",
-        title: "Fashionista",
-      },
-      {
-        categoryId: "102",
-        title: "Denim Deluxe",
-      },
-      {
-        categoryId: "103",
-        title: "Sunshine Couture",
-      },
-    ],
-  },
-];
 
 const Sidebar: React.FC<SidebarProps> = ({
   onCategorySelect,

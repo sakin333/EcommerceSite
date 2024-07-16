@@ -1,15 +1,18 @@
 import { FaBars, FaShoppingCart, FaUser } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { useAppSelector } from "../app/hooks";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
 
+  const { cartQuantity } = useAppSelector((state) => state.cart);
+
   return (
     <nav className="py-6 relative z-[999]">
-      <div className="container mx-auto flex justify-between items-center px-4">
+      <div className="container mx-auto flex justify-between items-center">
         <div className="flex items-center">
           <Link
             to="/"
@@ -57,8 +60,17 @@ const Navbar = () => {
         </button>
 
         <div className="hidden sm:flex items-center gap-6">
-          <Link to="/cart" aria-label="cart">
+          <Link
+            to="/cart"
+            aria-label="cart"
+            className="w-8 h-8 flex items-center justify-center relative"
+          >
             <FaShoppingCart className="text-gray-800 text-xl lg:text-2xl hover:text-blue-600 transition duration-300" />
+            {cartQuantity !== 0 && (
+              <div className="w-6 h-6 absolute bottom-0 right-0 translate-x-[12px] translate-y-[8px] bg-red-600 rounded-full text-white font-bold flex items-center justify-center">
+                {cartQuantity}
+              </div>
+            )}
           </Link>
           <Link to="/profile" aria-label="profile">
             <FaUser className="text-gray-800 text-xl lg:text-2xl hover:text-blue-600 transition duration-300" />
