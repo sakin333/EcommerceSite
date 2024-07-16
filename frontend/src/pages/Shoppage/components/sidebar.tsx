@@ -1,5 +1,4 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
-import { colors } from "../constants/data";
 import { FaChevronDown, FaChevronUp, FaCircle } from "react-icons/fa";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { Brands } from "../../../features/categories/categoriesTypes";
@@ -11,6 +10,9 @@ type SidebarProps = {
   onCategorySelect: (categoryId: string | null) => void;
   onPriceSelect: (priceRange: number[]) => void;
   priceRange: number[];
+  selectedColor: string;
+  onColorSelect: (selectedColor: string) => void;
+  colors: string[];
 };
 
 const mockBrands: Brands[] = [
@@ -40,12 +42,14 @@ const Sidebar: React.FC<SidebarProps> = ({
   onCategorySelect,
   onPriceSelect,
   priceRange,
+  selectedColor,
+  onColorSelect,
+  colors,
 }) => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [selectedCategoryBrand, setSelectedCategoryBrand] = useState<
     string | null
   >(null);
-  const [selectedColor, setSelectedColor] = useState<string>("");
   const [selectedRating, setSelectedRating] = useState<number>(0);
   const [hoverRating, setHoverRating] = useState<number>(0);
 
@@ -176,11 +180,11 @@ const Sidebar: React.FC<SidebarProps> = ({
             <div className="flex flex-col items-center">
               <button
                 key={color}
-                className={`w-6 h-6 rounded-full mb-2 border-2 transition duration-400 ease-in ${
+                className={`w-6 h-6 rounded-full mb-2 border-2 transition duration-100 ease-in ${
                   selectedColor === color ? " scale-150" : "scale-1"
                 }`}
                 style={{ backgroundColor: color.toLowerCase() }}
-                onClick={() => setSelectedColor(color)}
+                onClick={() => onColorSelect(color)}
               />
               <p className="text-xs md:text-sm text-gray-500">{color}</p>
             </div>

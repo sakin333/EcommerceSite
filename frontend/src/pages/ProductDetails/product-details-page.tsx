@@ -132,6 +132,7 @@ const ProductDetails = () => {
   const [isWishlist, setIsWishlist] = useState<boolean>(false);
   const [shownIndex, setShownIndex] = useState<number>(0);
   const [descriptionShown, setDescriptionShown] = useState<boolean>(true);
+  const [fade, setFade] = useState<boolean>(false);
 
   const [product, setProduct] = useState(
     () =>
@@ -156,7 +157,11 @@ const ProductDetails = () => {
   // }, [productId])
 
   const handleImageChange = (index: number) => {
-    setShownIndex(index);
+    setFade(true);
+    setTimeout(() => {
+      setShownIndex(index);
+      setFade(false);
+    }, 300);
   };
 
   const handleWishlist = () => {
@@ -178,11 +183,11 @@ const ProductDetails = () => {
   return (
     <section className="py-[52px] lg:py-[92px]">
       <div className="container mx-auto p-4">
-        <div className="flex flex-col md:flex-row items-start gap-4 mb-16 lg:mb-24 border border-blue-500">
+        <div className="flex flex-col md:flex-row items-start gap-4 mb-16 lg:mb-24">
           <div className="flex flex-col gap-4">
             {product.media.images.map((image, index) => (
               <div
-                className="w-[100px] h-[100px]"
+                className="w-[100px] h-[100px] cursor-pointer"
                 onClick={() => handleImageChange(index)}
               >
                 <img
@@ -193,14 +198,16 @@ const ProductDetails = () => {
               </div>
             ))}
           </div>
-          <div className="w-full md:w-1/2 h-[642px] px-4 border border-red-500">
+          <div className="w-full md:w-1/2 h-[642px] px-4">
             <img
               // src={`https://${
               //   product.media.images.find((img) => img.isPrimary)?.url
               // }`}
-              src={product.media.images.find((img) => img.isPrimary)?.url}
+              src={product.media.images[shownIndex]?.url}
               alt={product.name}
-              className="w-full h-full object-cover rounded-lg"
+              className={`w-full h-full object-cover rounded-lg transition-opacity duration-300 ${
+                fade ? "opacity-0" : "opacity-100"
+              }`}
             />
           </div>
           <div className="w-full md:w-1/2 p-4">
@@ -233,9 +240,9 @@ const ProductDetails = () => {
             </div>
 
             <div className="text-gray-700 mb-8">
-              <h3 className="text-lg font-semibold mb-2">Product Details:</h3>
-              <p>{product.description}</p>
-              <h3 className="text-lg font-semibold mt-4">About Me:</h3>
+              {/* <h3 className="text-lg font-semibold mb-2">Product Details:</h3>
+              <p>{product.description}</p> */}
+              <h3 className="text-lg font-semibold mt-4">About:</h3>
               <p>{product.info.aboutMe}</p>
               {product.info.sizeAndFit && (
                 <>

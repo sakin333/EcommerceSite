@@ -25,13 +25,14 @@ const ProductCard = ({
     <div className="min-w-[180px] max-w-[340px] h-full max-h-[440px] md:max-h-[540px] bg-white rounded-lg shadow-lg flex flex-col">
       <div className="h-[60%]">
         <img
-          src={`https://${imageUrl}`}
+          // src={`https://${imageUrl}`}
+          src={imageUrl}
           alt={name}
           className="w-full h-full object-cover rounded-t-lg"
         />
       </div>
       <div className="h-[40%] p-2 sm:p-4 flex flex-col justify-between">
-        <div className="h-[75%]">
+        <div className="h-[70%]">
           <h3
             className="text-sm md:text-lg font-semibold mb-2"
             title={`${name}`}
