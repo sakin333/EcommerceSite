@@ -3,6 +3,7 @@ import productReducer from "../features/products/productSlice";
 import productDetailReducer from "../features/productDetails/productDetailsSlice";
 import categoryReducer from "../features/categories/categoriesSlice";
 import cartReducer from "../features/cart/cartSlice";
+import localStorageMiddleware from "../middleware/middleware";
 
 const store = configureStore({
   reducer: {
@@ -11,6 +12,8 @@ const store = configureStore({
     category: categoryReducer,
     cart: cartReducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(localStorageMiddleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;
