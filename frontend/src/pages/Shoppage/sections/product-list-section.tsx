@@ -49,7 +49,7 @@ const ProductsListSection = () => {
 
   return (
     <section className="bg-white py-[54px] lg:py-[92px]">
-      <div className="container mx-auto w-full flex ">
+      <div className="container mx-auto block lg:flex">
         <div className="w-[20%] hidden lg:block">
           <Sidebar
             onCategorySelect={setSelectedCategoryId}

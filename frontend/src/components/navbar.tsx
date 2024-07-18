@@ -12,7 +12,7 @@ const Navbar = () => {
 
   return (
     <nav className="py-6 relative z-[999]">
-      <div className="container mx-auto flex justify-between items-center">
+      <div className="container mx-auto flex justify-between items-center px-4 md:px-0">
         <div className="flex items-center">
           <Link
             to="/"
@@ -34,12 +34,6 @@ const Navbar = () => {
             className="text-gray-800 font-semibold active:text-blue-600 hover:text-blue-600 transition duration-300"
           >
             Shop
-          </Link>
-          <Link
-            to="/deals"
-            className="text-gray-800 font-semibold active:text-blue-600 hover:text-blue-600 transition duration-300"
-          >
-            Deals
           </Link>
           <Link
             to="/lookbook"
@@ -99,11 +93,11 @@ const Navbar = () => {
             Shop
           </Link>
           <Link
-            to="/deals"
+            to="/lookbook"
             className="text-sm text-gray-800 font-semibold hover:text-blue-600 transition duration-300"
             onClick={toggleMenu}
           >
-            Deals
+            Lookbook
           </Link>
           <Link
             to="/contact"
@@ -112,14 +106,30 @@ const Navbar = () => {
           >
             Contact
           </Link>
-          <div className="flex items-center gap-4 ">
-            <Link to="/cart" aria-label="cart" onClick={toggleMenu}>
-              <FaShoppingCart className="text-gray-800 hover:text-blue-600 transition duration-300" />
-            </Link>
-            <Link to="/profile" aria-label="profile" onClick={toggleMenu}>
-              <FaUser className="text-gray-800 hover:text-blue-600 transition duration-300" />
-            </Link>
-          </div>
+          {/* <div className="flex items-center gap-8 "> */}
+          <Link
+            to="/cart"
+            aria-label="cart"
+            onClick={toggleMenu}
+            className="w-full text-sm text-gray-800 font-semibold hover:text-blue-600 transition duration-300 flex justify-between items-center"
+          >
+            {/* <FaShoppingCart className="text-gray-800 hover:text-blue-600 transition duration-300" /> */}
+            Cart
+            {cartQuantity !== 0 && (
+              <div className="w-6 h-6 bg-red-600 rounded-full text-white font-bold flex items-center justify-center">
+                {cartQuantity}
+              </div>
+            )}
+          </Link>
+          <Link
+            to="/profile"
+            aria-label="profile"
+            onClick={toggleMenu}
+            className="text-sm text-gray-800 font-semibold hover:text-blue-600 transition duration-300"
+          >
+            Profile
+          </Link>
+          {/* </div> */}
         </div>
       </div>
     </nav>

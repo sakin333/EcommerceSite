@@ -50,8 +50,8 @@ const ProductCard = ({ id, imageUrl, name, price, brandName }: Product) => {
   };
 
   return (
-    <div className="min-w-[180px] max-w-[340px] h-full max-h-[452px] md:max-h-[540px] bg-white rounded-lg shadow-lg flex flex-col">
-      <div className="h-[60%] relative">
+    <div className="min-w-[180px] max-w-[340px] h-full max-h-[350px] md:max-h-[540px] bg-white rounded-lg shadow-lg flex flex-col">
+      <div className="h-[50%] lg:h-[60%] relative">
         <img
           // src={`https://${imageUrl}`}
           src={imageUrl}
@@ -62,8 +62,8 @@ const ProductCard = ({ id, imageUrl, name, price, brandName }: Product) => {
           <FaArrowAltCircleRight className="text-xl lg:text-2xl text-green-600" />
         </Link>
       </div>
-      <div className="h-[40%] p-2 sm:p-4 flex flex-col justify-between">
-        <div className="h-[70%]">
+      <div className="h-[50%] lg:h-[40%] p-2 sm:p-4 flex flex-col justify-between">
+        <div className="h-[55%]">
           <h3
             className="text-sm md:text-lg font-semibold mb-2"
             title={`${name}`}
@@ -73,7 +73,7 @@ const ProductCard = ({ id, imageUrl, name, price, brandName }: Product) => {
           <span className="text-xs md:text-base text-gray-600 mb-4">
             {brandName}
           </span>
-          <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center justify-between">
             <span className="text-sm md:text-xl font-bold">
               {formatCurrency(price.value)}
             </span>
@@ -99,22 +99,22 @@ const ProductCard = ({ id, imageUrl, name, price, brandName }: Product) => {
             Add to Cart
           </button>
         ) : (
-          <div className="flex flex-col items-center gap-2">
-            <div className="flex items-center justify-center gap-4">
+          <div className="h-[45%] flex flex-col items-center gap-2">
+            <div className="flex items-center justify-center gap-2 md:gap-4">
               <button
-                className="w-8 h-8 text-lg lg:text-xl font-bold rounded-full hover:bg-gray-200 flex items-center justify-center shadow-md border border-gray-100"
+                className="w-6 h-6 md:w-8 md:h-8 text-lg lg:text-xl font-bold rounded-full hover:bg-gray-200 flex items-center justify- shadow-sm md:shadow-md border border-gray-100"
                 onClick={() => handleDecreaseQuantity(id)}
               >
                 -
               </button>
-              <div className="text-gray-500">
+              <div className="text-gray-500 text-xs md:text-sm">
                 <span className="text-gray-900 text-lg lg:text-xl font-bold mr-2">
                   {quantity}
                 </span>{" "}
                 in cart
               </div>
               <button
-                className="w-8 h-8 text-lg lg:text-xl font-bold rounded-full hover:bg-gray-200 flex items-center justify-center shadow-md border border-gray-100"
+                className="w-6 h-6 md:w-8 md:h-8 text-lg lg:text-xl font-bold rounded-full hover:bg-gray-200 flex items-center justify-center shadow-sm md:shadow-md border border-gray-100"
                 onClick={() => handleIncreaseQuantity(id)}
               >
                 +

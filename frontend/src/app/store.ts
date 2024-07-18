@@ -3,7 +3,8 @@ import productReducer from "../features/products/productSlice";
 import productDetailReducer from "../features/productDetails/productDetailsSlice";
 import categoryReducer from "../features/categories/categoriesSlice";
 import cartReducer from "../features/cart/cartSlice";
-import localStorageMiddleware from "../middleware/middleware";
+import productsRecommendationReducer from "../features/productRecommendation/productRecommendationSlice";
+import localStorageMiddleware from "../middleware/localStorageMiddleware";
 
 const store = configureStore({
   reducer: {
@@ -11,6 +12,7 @@ const store = configureStore({
     productDetail: productDetailReducer,
     category: categoryReducer,
     cart: cartReducer,
+    productsRecommendation: productsRecommendationReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(localStorageMiddleware),

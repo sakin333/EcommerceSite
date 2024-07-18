@@ -1,5 +1,6 @@
 import { Brands } from "./features/categories/categoriesTypes";
 import { ProductDetail } from "./features/productDetails/productDetailsTypes";
+import { RecommendedProduct } from "./features/productRecommendation/productRecommendationTypes";
 import { Product } from "./features/products/productTypes";
 import { CollectionTypes } from "./pages/Homepage/types/collection-types";
 import { TestimonialsType } from "./pages/Homepage/types/testimonial-types";
@@ -235,7 +236,8 @@ export const mockProductDetails: ProductDetail[] = [
     media: {
       images: [
         {
-          url: "https://www.wilsonsleather.com/media/catalog/product/m/m/mm1z1778_mm1z1778c01_1.jpg?optimize=medium&bg-color=255,255,255&fit=bounds&height=1542&width=1300&canvas=1300:1542",
+          url: "https://americantall.com/cdn/shop/products/American-Tall-Men-Mens-Dylan-Slim-Fit-Jeans-Retro-Blue-front.jpg?v=1665604879",
+
           colorWayId: "blue01",
           color: "Blue",
           isPrimary: true,
@@ -271,7 +273,8 @@ export const mockProductDetails: ProductDetail[] = [
     media: {
       images: [
         {
-          url: "https://www.wilsonsleather.com/media/catalog/product/m/m/mm1z1778_mm1z1778c01_1.jpg?optimize=medium&bg-color=255,255,255&fit=bounds&height=1542&width=1300&canvas=1300:1542",
+          url: "https://www.chicwish.com/media/catalog/product/cache/789a34736ead3066d85296b038a5aa03/2/0/20525mm.37.jpg",
+
           colorWayId: "yellow01",
           color: "Yellow",
           isPrimary: true,
@@ -297,5 +300,72 @@ export const mockProductDetails: ProductDetail[] = [
       value: 75.5,
       text: "$75.50",
     },
+  },
+];
+
+export const mockRecommendedProducts: RecommendedProduct[] = [
+  {
+    id: 1,
+    name: "Classic Leather Jacket",
+    brandName: "Fashionista",
+    imageUrl:
+      "https://www.wilsonsleather.com/media/catalog/product/m/m/mm1z1778_mm1z1778c01_1.jpg?optimize=medium&bg-color=255,255,255&fit=bounds&height=1542&width=1300&canvas=1300:1542",
+    price: 120.99,
+  },
+  {
+    id: 2,
+    name: "Slim Fit Jeans",
+    brandName: "Denim Deluxe",
+    imageUrl:
+      "https://americantall.com/cdn/shop/products/American-Tall-Men-Mens-Dylan-Slim-Fit-Jeans-Retro-Blue-front.jpg?v=1665604879",
+    price: 49.99,
+  },
+  {
+    id: 3,
+    name: "Summer Floral Dress",
+    brandName: "Sunshine Couture",
+    imageUrl:
+      "https://www.chicwish.com/media/catalog/product/cache/789a34736ead3066d85296b038a5aa03/2/0/20525mm.37.jpg",
+    price: 75.5,
+  },
+  {
+    id: 5,
+    name: "Winter Floral Dress",
+    brandName: "Sunshine Couture",
+    imageUrl:
+      "https://cdn.shopify.com/s/files/1/0028/1945/7082/files/black-floral-dress.jpg?v=1578013838",
+    price: 70.5,
+  },
+  {
+    id: 6,
+    name: "Classic Leather Jacket",
+    brandName: "Fashionista",
+    imageUrl:
+      "https://www.wilsonsleather.com/media/catalog/product/m/m/mm1z1778_mm1z1778c01_1.jpg?optimize=medium&bg-color=255,255,255&fit=bounds&height=1542&width=1300&canvas=1300:1542",
+    price: 120.99,
+  },
+  {
+    id: 7,
+    name: "Slim Fit Jeans",
+    brandName: "Denim Deluxe",
+    imageUrl:
+      "https://americantall.com/cdn/shop/products/American-Tall-Men-Mens-Dylan-Slim-Fit-Jeans-Retro-Blue-front.jpg?v=1665604879",
+    price: 49.99,
+  },
+  {
+    id: 8,
+    name: "Summer Floral Dress",
+    brandName: "Sunshine Couture",
+    imageUrl:
+      "https://www.chicwish.com/media/catalog/product/cache/789a34736ead3066d85296b038a5aa03/2/0/20525mm.37.jpg",
+    price: 75.5,
+  },
+  {
+    id: 9,
+    name: "Winter Floral Dress",
+    brandName: "Sunshine Couture",
+    imageUrl:
+      "https://cdn.shopify.com/s/files/1/0028/1945/7082/files/black-floral-dress.jpg?v=1578013838",
+    price: 70.5,
   },
 ];

@@ -23,13 +23,7 @@ const fetchProductDetail: any = createAsyncThunk(
         "x-rapidapi-host": "asos10.p.rapidapi.com",
       },
     });
-
-    console.log("response", response.data);
-
     const productDetail = response.data.data;
-
-    console.log(productDetail);
-
     return productDetail;
   }
 );
