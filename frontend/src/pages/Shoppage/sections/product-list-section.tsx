@@ -5,8 +5,11 @@ import { RootState } from "../../../app/store";
 import { useEffect, useMemo, useState } from "react";
 import { fetchProducts } from "../../../features/products/productSlice";
 import { mockProducts } from "../../../mockData";
+import { useAuthContext } from "../../../hooks/useAuthContext";
 
 const ProductsListSection = () => {
+  const { user } = useAuthContext();
+
   const dispatch = useAppDispatch();
   // const { products, loading, error } = useAppSelector(
   //   (state: RootState) => state.products
@@ -23,6 +26,26 @@ const ProductsListSection = () => {
   // useEffect(() => {
   //   if (selectedCategoryId) dispatch(fetchProducts(selectedCategoryId));
   // }, [dispatch, selectedCategoryId]);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const response = await fetch("/api/products", {
+        headers: {
+          Authorization: `Bearer ${user?.token}`,
+        },
+      });
+
+      const json = await response.json();
+
+      if (response.ok) {
+        console.log("Data: ", json);
+      }
+
+      if (user) {
+        fetchProducts();
+      }
+    };
+  }, [user]);
 
   const filteredProducts = useMemo(() => {
     return mockProducts.filter((product) => {

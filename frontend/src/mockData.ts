@@ -15,7 +15,7 @@ export const collectionItems: CollectionTypes[] = [
   {
     id: 2,
     image: "https://via.placeholder.com/150",
-    title: "Stylish Sneakers",
+    title: "Street Sneakers",
     price: "$90",
   },
   {
@@ -33,33 +33,33 @@ export const collectionItems: CollectionTypes[] = [
   {
     id: 5,
     image: "https://via.placeholder.com/150",
-    title: "Trendy Jacket",
+    title: "Trendy Shirt",
     price: "$120",
   },
   {
     id: 6,
     image: "https://via.placeholder.com/150",
-    title: "Stylish Sneakers",
+    title: "Formal Dress",
     price: "$90",
   },
-  {
-    id: 7,
-    image: "https://via.placeholder.com/150",
-    title: "Casual Jeans",
-    price: "$70",
-  },
-  {
-    id: 8,
-    image: "https://via.placeholder.com/150",
-    title: "Classic Watch",
-    price: "$150",
-  },
-  {
-    id: 9,
-    image: "https://via.placeholder.com/150",
-    title: "Casual Jeans",
-    price: "$70",
-  },
+  // {
+  //   id: 7,
+  //   image: "https://via.placeholder.com/150",
+  //   title: "Casual Jeans",
+  //   price: "$70",
+  // },
+  // {
+  //   id: 8,
+  //   image: "https://via.placeholder.com/150",
+  //   title: "Classic Watch",
+  //   price: "$150",
+  // },
+  // {
+  //   id: 9,
+  //   image: "https://via.placeholder.com/150",
+  //   title: "Casual Jeans",
+  //   price: "$70",
+  // },
 ];
 
 export const testimonials: TestimonialsType[] = [

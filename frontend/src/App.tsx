@@ -7,13 +7,26 @@ import ContactPage from "./pages/Contact/contact-page";
 import LookbookLayout from "./pages/Lookbook/lookbook-layout";
 import AddToCart from "./pages/AddToCart/add-to-cart-page";
 import ProductDetailsPage from "./pages/ProductDetails/product-details-page";
+import LoginSignupPage from "./auth/login-signup-page";
+
+import { Navigate } from "react-router-dom";
+import { useAuthContext } from "./hooks/useAuthContext";
 
 const App = () => {
+  const { user } = useAuthContext();
+
   return (
     <>
       <Navbar />
       <Routes>
-        <Route path="" element={<Homepage />} />
+        <Route
+          path=""
+          element={user ? <Homepage /> : <Navigate to="/auth" />}
+        />
+        <Route
+          path="/auth"
+          element={!user ? <LoginSignupPage /> : <Navigate to="/" />}
+        />
         <Route path="/shop" element={<Shoppage />} />
         <Route
           path="/shop/product/:productId"

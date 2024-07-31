@@ -1,3 +1,4 @@
+import { ellipsis } from "../../../utilities/ellipsis";
 import { CollectionTypes } from "../types/collection-types";
 
 const FeatureCard = ({ image, title, price }: CollectionTypes) => {
@@ -9,7 +10,7 @@ const FeatureCard = ({ image, title, price }: CollectionTypes) => {
         className="w-full h-36 lg:h-48 object-cover rounded-lg mb-4"
       />
       <h3 className="text-lg lg:text-xl font-semibold text-gray-800 mb-2">
-        {title}
+        {ellipsis(title, 4)}
       </h3>
       <p className="text-sm lg:text-lg">{price}</p>
     </div>

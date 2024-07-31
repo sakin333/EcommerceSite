@@ -16,6 +16,7 @@ import {
 import React, { ChangeEvent, useState } from "react";
 import { validateForm } from "../../utilities/validate";
 import { FormTypes } from "../../types/formTypes";
+import { useSignup } from "../../hooks/useSignup";
 
 const Signup = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -25,6 +26,7 @@ const Signup = () => {
     password: "",
   });
   const [errors, setErrors] = useState<Partial<FormTypes>>({});
+  const { signup, isLoading, error } = useSignup();
 
   const handleClickShowPassword = () => {
     setShowPassword((prev) => !prev);
@@ -41,15 +43,18 @@ const Signup = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (event: React.FormEvent) => {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
     const { errors, error } = validateForm(formData);
     setErrors(errors);
 
-    if (!error) {
-      console.log("Form Sumbitted", formData);
+    if (error) {
+      console.log("Failed to submit form");
+      return;
     }
+
+    await signup(formData);
   };
 
   return (
@@ -131,10 +136,12 @@ const Signup = () => {
             fullWidth
             sx={{ paddingY: "8px" }}
             onClick={handleSubmit}
+            disabled={!!isLoading}
           >
             Sign Up
           </Button>
         </Box>
+        {error && <div className="text-red-600">{error}</div>}
       </form>
       <div
         style={{

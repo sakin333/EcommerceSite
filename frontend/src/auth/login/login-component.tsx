@@ -11,6 +11,7 @@ import { FormTypes } from "../../types/formTypes";
 import { validateForm } from "../../utilities/validate";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { ChangeEvent, useState } from "react";
+import { useLogin } from "../../hooks/useLogin";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -19,6 +20,7 @@ const Login = () => {
     password: "",
   });
   const [errors, setErrors] = useState<Partial<FormTypes>>({});
+  const { login, isLoading, error } = useLogin();
 
   const handleClickShowPassword = () => {
     setShowPassword((prev) => !prev);
@@ -35,15 +37,18 @@ const Login = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (event: React.FormEvent) => {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
     const { errors, error } = validateForm(formData);
     setErrors(errors);
 
-    if (!error) {
-      console.log("Form Sumbitted", formData);
+    if (error) {
+      console.log("Failed to submit form");
+      return;
     }
+
+    await login(formData);
   };
 
   return (
@@ -113,10 +118,12 @@ const Login = () => {
             fullWidth
             onClick={handleSubmit}
             sx={{ paddingY: "8px" }}
+            disabled={!!isLoading}
           >
             Login
           </Button>
         </Box>
+        {error && <div className="text-red-600">{error}</div>}
       </form>
     </Box>
   );

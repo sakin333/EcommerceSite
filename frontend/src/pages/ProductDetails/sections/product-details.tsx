@@ -106,7 +106,7 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
               </div>
             ))}
           </div>
-          <div className="w-full md:w-1/2 h-[642px] px-4">
+          <div className="w-full md:w-1/2  px-4">
             <img
               // src={`https://${
               //   product.media.images.find((img) => img.isPrimary)?.url
@@ -195,7 +195,7 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
               <p>{product.info.careInfo}</p>
             </div>
 
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-4 mb-8">
               <h2 className="text-sm md:text-lg font-bold text-gray-900">
                 SHARE ON:
               </h2>
@@ -226,32 +226,31 @@ const ProductDetails = ({ productId }: ProductDetailsProps) => {
                 </a>
               </div>
             </div>
-          </div>
-        </div>
-        <div className="px-4">
-          <div className="flex gap-8 md:gap-12 mb-4 lg:mb-8">
-            <button
-              className={`text-lg md:text-xl font-semibold ${
-                descriptionShown && "underline"
-              } underline-offset-[8px] cursor-pointer`}
-              onClick={() => setDescriptionShown(true)}
-            >
-              Description
-            </button>
-            <button
-              className={`text-lg md:text-xl font-semibold ${
-                !descriptionShown && "underline"
-              } underline-offset-[8px] cursor-pointer`}
-              onClick={() => setDescriptionShown(false)}
-            >
-              Reviews (5)
-            </button>
-          </div>
-          <div>
-            <p className="text-sm md:text-lg">
-              {descriptionShown && product.description}
-              {!descriptionShown && "reviews from people"}
-            </p>
+
+            <div className="flex gap-8 md:gap-12 mb-4 lg:mb-8">
+              <button
+                className={`text-lg md:text-xl font-semibold ${
+                  descriptionShown && "underline"
+                } underline-offset-[8px] cursor-pointer`}
+                onClick={() => setDescriptionShown(true)}
+              >
+                Description
+              </button>
+              <button
+                className={`text-lg md:text-xl font-semibold ${
+                  !descriptionShown && "underline"
+                } underline-offset-[8px] cursor-pointer`}
+                onClick={() => setDescriptionShown(false)}
+              >
+                Reviews (5)
+              </button>
+            </div>
+            <div>
+              <p className="text-sm md:text-lg">
+                {descriptionShown && product.description}
+                {!descriptionShown && "reviews from people"}
+              </p>
+            </div>
           </div>
         </div>
       </div>

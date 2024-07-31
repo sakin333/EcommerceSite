@@ -26,9 +26,13 @@ export const validateForm = (formData: Partial<FormTypes>) => {
   if (!formData.password) {
     errors.password = "*Password is required";
     errorFlag = true;
-  } else if (!passwordRegex.test(formData.password)) {
+  } else if (
+    !passwordRegex.test(formData.password) &&
+    formData.email &&
+    formData.username
+  ) {
     errors.password =
-      "*Password must be at least 6 characters long, include at least one number, and one special character.";
+      "*Password must be at least 6 characters long, include at least one number, one uppercase letter and one special character.";
     errorFlag = true;
   }
 
