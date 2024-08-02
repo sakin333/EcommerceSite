@@ -12,6 +12,7 @@ import { validateForm } from "../../utilities/validate";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { ChangeEvent, useState } from "react";
 import { useLogin } from "../../hooks/useLogin";
+import Snackbar from "../../components/snackbar";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -125,6 +126,12 @@ const Login = () => {
         </Box>
         {error && <div className="text-red-600">{error}</div>}
       </form>
+
+      <Snackbar
+        title="Success"
+        description="Login in successful"
+        variant="success"
+      />
     </Box>
   );
 };

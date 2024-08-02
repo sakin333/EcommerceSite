@@ -9,7 +9,7 @@ export const useLogin = () => {
 
   const login = async ({ email, password }: Partial<FormTypes>) => {
     setIsLoading(true);
-    setError(null);
+    // setError(null);
 
     const response = await fetch("http://localhost:4001/api/user/login", {
       method: "POST",
