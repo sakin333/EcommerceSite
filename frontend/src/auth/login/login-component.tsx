@@ -126,12 +126,6 @@ const Login = () => {
         </Box>
         {error && <div className="text-red-600">{error}</div>}
       </form>
-
-      <Snackbar
-        title="Success"
-        description="Login in successful"
-        variant="success"
-      />
     </Box>
   );
 };

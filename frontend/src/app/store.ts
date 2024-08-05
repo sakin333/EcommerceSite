@@ -5,6 +5,7 @@ import categoryReducer from "../features/categories/categoriesSlice";
 import cartReducer from "../features/cart/cartSlice";
 import productsRecommendationReducer from "../features/productRecommendation/productRecommendationSlice";
 import localStorageMiddleware from "../middleware/localStorageMiddleware";
+import snackbarReducer from "../features/snackbar/snackbarSlice";
 
 const store = configureStore({
   reducer: {
@@ -13,6 +14,7 @@ const store = configureStore({
     category: categoryReducer,
     cart: cartReducer,
     productsRecommendation: productsRecommendationReducer,
+    snackbar: snackbarReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(localStorageMiddleware),

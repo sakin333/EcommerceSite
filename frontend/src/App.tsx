@@ -11,6 +11,7 @@ import LoginSignupPage from "./auth/login-signup-page";
 
 import { Navigate } from "react-router-dom";
 import { useAuthContext } from "./hooks/useAuthContext";
+import Snackbar from "./components/snackbar";
 
 const App = () => {
   const { user } = useAuthContext();
@@ -36,6 +37,7 @@ const App = () => {
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/cart" element={<AddToCart />} />
       </Routes>
+      <Snackbar title="Helllo" description="Okay" variant="error" />
       <Footer />
     </>
   );
